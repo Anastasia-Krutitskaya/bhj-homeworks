@@ -9,20 +9,19 @@ next.onclick = function() {
         slides[n-1].classList.remove("slider__item_active");
         n = 0;
         slides[n].classList.add("slider__item_active");
-    } else { 
-        slides[n-1].classList.remove("slider__item_active");
-        slides[n].classList.add("slider__item_active");
-    }
+    } 
+    slides[n-1].classList.remove("slider__item_active");
+    slides[n].classList.add("slider__item_active");
 }
 prev.onclick = function() {
     if (n <= 0) {
         slides[n].classList.remove("slider__item_active");
         n = slides.length;
         slides[n-1].classList.add("slider__item_active");
-    } else { 
-        slides[n].classList.remove("slider__item_active");
-        slides[n-1].classList.add("slider__item_active");
-    }
+    }  else { 
+         slides[n].classList.remove("slider__item_active");
+         slides[n-1].classList.add("slider__item_active");
+     }
     --n;
 }
 
