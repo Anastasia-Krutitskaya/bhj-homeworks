@@ -8,10 +8,13 @@ class Game {
     this.reset();
 
     this.registerEvents();
+
+    this.timer();
   }
 
   reset() {
     this.setNewWord();
+    
     this.winsElement.textContent = 0;
     this.lossElement.textContent = 0;
   }
@@ -19,23 +22,33 @@ class Game {
   registerEvents() {
       document.addEventListener('keyup', (event) => {
       const symbol = this.currentSymbol.textContent.toLowerCase();
-      if ( event.key == symbol) {
+      const symbolChar = symbol.charCodeAt('0');
+      const keyChar = event.key.charCodeAt('0');
+      console.log(symbolChar, event.key, keyChar);
+      if ( keyChar == symbolChar) {
         this.success()
       } else {
         this.fail()
       }
     })
-    
-    
-    
+  }
 
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
+  timer() {
+    let countDown = this.wordElement.querySelectorAll('.symbol').length;
+    document.getElementById('timer').innerHTML = countDown;
+    let inteval = setInterval(() => {
+        countDown = countDown - 1;
+        document.getElementById('timer').innerHTML = countDown;
+        if (countDown <= 0) {
+          document.getElementById('timer').innerHTML = '0';
+          clearInterval(inteval);
+          alert('Вы проиграли!');
+          this.reset();
+          this.setNewWord();
+          this.timer();
+        }
+      }, 1000)
+
   }
 
   success() {
@@ -68,17 +81,18 @@ class Game {
 
   getWord() {
     const words = [
-        'bob',
-        'awesome',
-        'netology',
-        'hello',
-        'kitty',
-        'rock',
-        'youtube',
-        'popcorn',
-        'cinema',
-        'love',
-        'javascript'
+      'love это',
+      'bob',
+        // 'awesome',
+        // 'netology',
+        // 'hello',
+        // 'kitty',
+        // 'rock',
+        // 'youtube',
+        // 'popcorn',
+        // 'cinema',
+        // 'love',
+        // 'javascript'
       ],
       index = Math.floor(Math.random() * words.length);
 
