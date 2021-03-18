@@ -42,7 +42,6 @@ class Game {
         if (countDown <= 0) {
           document.getElementById('timer').innerHTML = '0';
           clearInterval(inteval);
-          alert('Вы проиграли!');
           this.reset();
           this.setNewWord();
           this.timer();
