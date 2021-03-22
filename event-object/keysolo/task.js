@@ -24,11 +24,15 @@ class Game {
       const symbol = this.currentSymbol.textContent.toLowerCase();
       const symbolChar = symbol.charCodeAt('0');
       const keyChar = event.key.charCodeAt('0');
-      console.log(symbolChar, event.key, keyChar);
-      if ( keyChar == symbolChar) {
+      console.log(symbolChar, symbol, event.key, keyChar);
+      console.log(event.location);
+      if (event.location === 1 || event.location === 2) {
+        event.preventDefault();
+      } else if ( keyChar == symbolChar) {
         this.success()
-      } else {
-        this.fail()
+      } else if (keyChar !== symbolChar) {
+        this.fail();
+        
       }
     })
   }
@@ -43,7 +47,7 @@ class Game {
           document.getElementById('timer').innerHTML = '0';
           clearInterval(inteval);
           this.reset();
-          this.setNewWord();
+          // this.setNewWord();
           this.timer();
         }
       }, 1000)
