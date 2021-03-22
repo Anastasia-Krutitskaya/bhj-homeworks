@@ -24,8 +24,7 @@ class Game {
       const symbol = this.currentSymbol.textContent.toLowerCase();
       const symbolChar = symbol.charCodeAt('0');
       const keyChar = event.key.charCodeAt('0');
-      console.log(symbolChar, symbol, event.key, keyChar);
-      console.log(event.location);
+      //console.log(symbolChar, symbol, event.key, keyChar);
       if (event.location === 1 || event.location === 2) {
         event.preventDefault();
       } else if ( keyChar == symbolChar) {
