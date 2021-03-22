@@ -47,7 +47,6 @@ class Game {
           document.getElementById('timer').innerHTML = '0';
           clearInterval(inteval);
           this.reset();
-          // this.setNewWord();
           this.timer();
         }
       }, 1000)
