@@ -16,6 +16,7 @@ document.getElementById('tasks__add').addEventListener('click', (event) => {
             document.querySelector('.task__remove').closest('.task').remove();
         })
     }
+    event.preventDefault();
 })
 
 

@@ -1,16 +1,21 @@
-let div = document.createElement('div');
-div.className = "tooltip";
-document.body.prepend(div);
+
 Array.from(document.querySelectorAll('.has-tooltip')).forEach(item => {
+    let div = document.createElement('div');
+    div.className = "tooltip";
+    item.after(div);
     item.addEventListener('click', (event) => { 
         const position = item.getBoundingClientRect();
         item.setAttribute('data-position' , 'bottom');
-        div.setAttribute('style', `left: ${position.left}px; top: ${position.top}px`);
-        div.innerHTML = item.title;
-        if ( document.querySelector('.tooltip_active')) {
+        item.nextSibling.setAttribute('style', `left: ${position.left}px; top: ${position.top + 20}px`);
+        item.nextSibling.innerHTML = item.title;
+        if (item.nextSibling.classList.contains('tooltip_active')) {
+            item.nextSibling.classList.remove('tooltip_active');
+        }
+         else if ( document.querySelector('.tooltip_active')) {
             document.querySelector('.tooltip_active').classList.remove('tooltip_active');
+            item.nextSibling.classList.add('tooltip_active');
         } else {
-            document.querySelector('.tooltip').classList.add('tooltip_active');
+            item.nextSibling.classList.add('tooltip_active');
         }
         event.preventDefault();
     })
